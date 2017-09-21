@@ -21,6 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".QnaActivity"/>
+        <activity android:name=".ArmasActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

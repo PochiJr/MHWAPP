@@ -5,7 +5,6 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -19,7 +18,8 @@ import java.util.List;
  * Created by jesus on 07/09/2017.
  */
 
-public class QnaActivity  extends AppCompatActivity {
+public class QnaActivity  extends MainActivity {
+
 
     private ExpandableListView listView;
     private ExpandableListAdapter listAdapter;
@@ -30,6 +30,8 @@ public class QnaActivity  extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qna_activity);
+        shouldPlay = false;
+
 
         listView = (ExpandableListView) findViewById(R.id.lvExp);
         initData();
@@ -73,6 +75,24 @@ public class QnaActivity  extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (shouldPlay == false) {
+            mp.pause();
+            lenght = mp.getCurrentPosition();
+        }
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mp.seekTo(lenght);
+        mp.start();
     }
 
     private void initData() {

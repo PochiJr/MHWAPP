@@ -16,21 +16,25 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.example.android.mhwapp.R.id.viewPager;
+
 public class MainActivity extends AppCompatActivity {
 
-    ViewPager viewPager;
+    ViewPager viewPagerMenu;
     LinearLayout sliderDotsPanel;
     private int dotscount;
     private ImageView[] dots;
-    private MediaPlayer mp;
+    public MediaPlayer mp;
     int lenght;
+    public static boolean shouldPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        shouldPlay = false;
         mp = MediaPlayer.create(getApplicationContext(), R.raw.mhapp_menu_music_1);
+        mp.setLooping(true);
         mp.start();
 
         // OnTouchListener para efecto de click y OnClickListener para la Intent de Armas.
@@ -65,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
         armas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Armas pulsado", Toast.LENGTH_SHORT).show();
+                Intent armasIntent = new Intent(MainActivity.this, ArmasActivity.class);
+
+                startActivity(armasIntent);
             }
         });
 
@@ -165,19 +171,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent qnaIntent = new Intent(MainActivity.this, QnaActivity.class);
-                MainActivity.this.startActivity(qnaIntent);
+
+                startActivity(qnaIntent);
 
             }
         });
 
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        // Lo relacionado al ViewPager del menú:
+        viewPagerMenu = (ViewPager) findViewById(viewPager);
 
         sliderDotsPanel = (LinearLayout) findViewById(R.id.SliderDots);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
 
-        viewPager.setAdapter(viewPagerAdapter);
+        viewPagerMenu.setAdapter(viewPagerAdapter);
 
         dotscount = viewPagerAdapter.getCount();
         dots = new ImageView[dotscount];
@@ -197,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
 
         dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        viewPagerMenu.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -230,10 +239,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mp.pause();
-        lenght = mp.getCurrentPosition();
-
+        if (shouldPlay == false) {
+            mp.pause();
+            lenght = mp.getCurrentPosition();
+        }
     }
+
+
 
     @Override
     protected void onResume() {
@@ -241,6 +253,7 @@ public class MainActivity extends AppCompatActivity {
         mp.seekTo(lenght);
         mp.start();
     }
+
 
 
     public class MyTimerTask extends TimerTask {
@@ -251,16 +264,16 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    if (viewPager.getCurrentItem() == 0){
-                        viewPager.setCurrentItem(1);
-                    } else if (viewPager.getCurrentItem() == 1){
-                        viewPager.setCurrentItem(2);
-                    } else if (viewPager.getCurrentItem() == 2) {
-                        viewPager.setCurrentItem(3);
-                    } else if (viewPager.getCurrentItem() == 3) {
-                        viewPager.setCurrentItem(4);
+                    if (viewPagerMenu.getCurrentItem() == 0){
+                        viewPagerMenu.setCurrentItem(1);
+                    } else if (viewPagerMenu.getCurrentItem() == 1){
+                        viewPagerMenu.setCurrentItem(2);
+                    } else if (viewPagerMenu.getCurrentItem() == 2) {
+                        viewPagerMenu.setCurrentItem(3);
+                    } else if (viewPagerMenu.getCurrentItem() == 3) {
+                        viewPagerMenu.setCurrentItem(4);
                     } else {
-                        viewPager.setCurrentItem(0);
+                        viewPagerMenu.setCurrentItem(0);
                     }
                 }
             });
