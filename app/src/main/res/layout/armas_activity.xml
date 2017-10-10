@@ -4,6 +4,10 @@
     android:background="@mipmap/fondo_submenus">
 
     <android.support.v4.view.ViewPager
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:id="@+id/armasViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

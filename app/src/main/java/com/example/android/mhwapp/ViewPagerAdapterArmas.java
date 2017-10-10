@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,26 +42,29 @@ public class ViewPagerAdapterArmas extends PagerAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.imageViewArmas);
         imageView.setImageResource(images[position]);
 
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (position == 0){
-                    Log.v("ViewPagerAdapter: ", "Imagen 1 pulsada");
+                    Uri uri = Uri.parse("http://es.monsterhunter.wikia.com/wiki/Espadas_Dobles");
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    context.startActivity(intent);
                 } else if (position == 1){
-                    Uri uri = Uri.parse("https://www.youtube.com/watch?v=Yyy43cunty4&t=480s");
+                    Uri uri = Uri.parse("http://es.monsterhunter.wikia.com/wiki/Gran_Espada");
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     context.startActivity(intent);
                 } else if (position == 2){
-                    Uri uri = Uri.parse("https://www.youtube.com/watch?v=zNfK-YqLUbU");
+                    Uri uri = Uri.parse("http://es.monsterhunter.wikia.com/wiki/Martillo");
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     context.startActivity(intent);
                 } else if (position == 3) {
-                    Uri uri = Uri.parse("https://youtu.be/YzNS661uSBc");
+                    Uri uri = Uri.parse("http://es.monsterhunter.wikia.com/wiki/Ballesta_Pesada");
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     context.startActivity(intent);
                 } else {
-                    Uri uri = Uri.parse("https://www.youtube.com/watch?v=ULqY6yXn2S4");
+                    Uri uri = Uri.parse("http://es.monsterhunter.wikia.com/wiki/Glaive_Insecto");
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     context.startActivity(intent);
                 }

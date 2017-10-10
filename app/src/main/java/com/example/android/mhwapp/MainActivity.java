@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         shouldPlay = false;
-        mp = MediaPlayer.create(getApplicationContext(), R.raw.mhapp_menu_music_1);
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.val_habar_main_theme);
         mp.setLooping(true);
         mp.start();
 
@@ -104,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
         bestiario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Bestiario pulsado", Toast.LENGTH_SHORT).show();
+                Intent bestiarioIntent = new Intent(MainActivity.this, BestiarioActivity.class);
+
+                startActivity(bestiarioIntent);
             }
         });
 
@@ -137,7 +138,11 @@ public class MainActivity extends AppCompatActivity {
         historia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Historia pulsado", Toast.LENGTH_SHORT).show();
+
+                Intent historiaIntent = new Intent(MainActivity.this, HistoriaActivity.class);
+
+                startActivity(historiaIntent);
+
             }
         });
 
@@ -176,6 +181,42 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        ImageView musicButton = (ImageView) findViewById(R.id.music_button);
+        musicButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        ImageView view = (ImageView) v;
+                        //overlay is black with transparency of 0x77 (119)
+                        view.getDrawable().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                        view.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL: {
+                        ImageView view = (ImageView) v;
+                        //clear the overlay
+                        view.getDrawable().clearColorFilter();
+                        view.invalidate();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
+
+        musicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent musicIntent = new Intent(MainActivity.this, myRadioGroup.class);
+
+                startActivity(musicIntent);
+            }
+        });
+
+
 
 
 

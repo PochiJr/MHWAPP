@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@mipmap/fondo_qna"
+    >
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="15dp"
+        android:typeface="serif"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccione la música: "/>
+
+    <RadioGroup
+        android:layout_marginLeft="30dp"
+        android:id="@+id/myRadioGroup"
+        android:orientation="vertical"
+        android:checkedButton="@+id/val_habar_default_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt">
+
+        <RadioButton
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/none"
+            android:text="Ninguna"/>
+
+        <RadioButton
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/val_habar_default_theme"
+            android:text="Val Habar (Tema por Defecto)"/>
+
+        <RadioButton
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancion_triunfo"
+            android:text="Canción del Triunfo"/>
+
+        <RadioButton
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/canal_helado"
+            android:text="Canal Helado (Batalla)"/>
+
+        <RadioButton
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tema_gremio_4"
+            android:text="Tema Gremio 4"/>
+
+        <RadioButton
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lagiacrus"
+            android:text="Tema Lagiacrus (Batalla)"/>
+
+        <RadioButton
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/zinogre"
+            android:text="Tema Zinogre (Batalla)"/>
+
+
+    </RadioGroup>
+
+</RelativeLayout>
